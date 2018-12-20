@@ -31,8 +31,8 @@ router.post('/login', function (req, res, next) {
                             const token = jwt.sign(
                             {
                                 userId: userInfo._id,
-                                admin: userInfo.admin,
-                                username: userInfo.username
+                                username: userInfo.username,
+                                workshop: userInfo.workshop
                             },
                             config.secretKey,
                             {

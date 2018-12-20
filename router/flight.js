@@ -14,7 +14,8 @@ const note = require('../utils/feedback');
 const Flight = require('../models/Flight');
 
 router.get('/', (req, res, next) => {
-    Find(Flight, res, {key: {userId: '5c0dfb7f607713088c65d221'}});
+    console.log(req.body, req.headers);
+    Find(Flight, res, {key: {userId: req.headers["_id"]}});
 });
 
 
@@ -33,7 +34,7 @@ router.get('/', (req, res, next) => {
 // };
 router.post('/', (req, res, next) => {
     Create(Flight, res, {
-        userId: '5c0dfb7f607713088c65d221',
+        userId: req.headers["_id"],
         ...req.body,
     });
 });

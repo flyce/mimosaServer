@@ -36,7 +36,8 @@ function verifyToken(req, res, next) {
                                     const token = jwt.sign(
                                         {
                                             userId: decoded.userId,
-                                            admin: decoded.admin
+                                            username: decoded.username,
+                                            workshop: decoded.workshop
                                         },
                                         config.secretKey,
                                         {
@@ -74,8 +75,8 @@ function verifyToken(req, res, next) {
                     } else {
                         if (auth === data) {
                             req.headers["_id"] = decoded.userId;
-                            req.headers["admin"] = decoded.admin;
                             req.headers["username"] = decoded.username;
+                            req.headers["workshop"] = decoded.workshop;
                             next();
                         } else {
                             res.json({

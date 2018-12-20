@@ -43,7 +43,7 @@ router.post('/update/password', (req, res, next) => {
  * 注销登录 要求 _id token
  * 判断合法则清除 redis 数据库里的 key: value => _id: token
  */
-router.get('/logout', (req, res, next) => {
+router.post('/logout', (req, res, next) => {
     redisClient.get(req.headers["_id"], (err, token) => {
         if(!err) {
             if (req.headers["auth"] === token) {

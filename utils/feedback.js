@@ -10,6 +10,6 @@ const Note = (res, flag, infoOrData) => {
             info: infoOrData
         })
     }
-}
+};
 
 module.exports = Note;

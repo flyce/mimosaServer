@@ -61,6 +61,12 @@ const FlightSchema = new Schema({
     delayTime: {
         type: String
     },
+    releaseTime: {
+        type: String
+    },
+    inPlaceTime: {
+        type: String
+    },
     currentStatus: {
         type: String,
         require: [true, 'currentStatus field is required'],

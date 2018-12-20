@@ -7,6 +7,7 @@ const base = require('./router/base');
 const user = require('./router/user');
 const flight = require('./router/flight');
 const people = require('./router/people');
+const task = require('./router/task');
 
 // middleware
 const verifyToken = require('./middleware/verifyToken');
@@ -41,8 +42,9 @@ app.get('/', (req, res, next) => {
 
 app.use("/cli", base);
 app.use("/user", verifyToken, user);
-app.use("/flight", flight);
-app.use("/people", people);
+app.use("/flight", verifyToken, flight);
+app.use("/people", verifyToken, people);
+app.use("/task", verifyToken, task);
 
 
 // error handing middleware

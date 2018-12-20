@@ -16,7 +16,6 @@ const Create = (Model, res, payload) => {
 const Remove = (Model, res, payload) => {
     Model.deleteOne(payload).then(
         (data, err) => {
-            console.log(data, err);
             if(!err) {
                 note(res, true, data);
             } else {

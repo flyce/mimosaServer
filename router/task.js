@@ -11,27 +11,19 @@ const Remove = require('../utils/curd').Remove;
 const note = require('../utils/feedback');
 
 // Model
-const People = require('../models/Peolple');
+const Task = require('../models/Task');
 
 router.get('/', (req, res, next) => {
-    Find(People, res, {key: {workshop: req.headers["workshop"]}, limit: req.query.limit});
+    Find(Task, res, { key: {name: req.query.name, date: req.query.date}});
 });
 
 router.post('/', (req, res, next) => {
-    Create(People, res, {
-        userId: req.headers["_id"],
-        ...req.body,
-    });
-});
-
-router.post('/update', (req, res, next) => {
-    const { _id } = req.body;
-    delete req.body._id;
-    Update(People, res, {key: {_id}, content: req.body});
+    Create(Task, res, {...req.body});
 });
 
 router.post('/delete', (req, res, next) => {
-    Remove(People, res, {...req.body});
+    Remove(Task, res, {flightId: req.body.flightId, name: req.body.name});
 });
+
 
 module.exports = router;
