@@ -1,6 +1,19 @@
 const express = require('express');
 const router = express.Router();
 
+const XLSX = require('xlsx');
+
+const multer  = require('multer');
+const  storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads');
+    },
+    filename: (req, file, cb) => {
+        cb(null, req.headers['username'] + '-' + new Date().toLocaleDateString().replace(/\//g, '-') + '-' + file.originalname);
+    }
+});
+const upload = multer({ storage: storage });
+
 // db curd
 const Update = require('../utils/curd').Update;
 const Create = require('../utils/curd').Create;
@@ -14,10 +27,9 @@ const note = require('../utils/feedback');
 const Flight = require('../models/Flight');
 
 router.get('/', (req, res, next) => {
-    console.log(req.body, req.headers);
-    Find(Flight, res, {key: {userId: req.headers["_id"]}});
+    const date = req.query.date || new Date().getFullYear() + '-' + Number(new Date().getMonth() + 1) + '-' + new Date().getDate();
+    Find(Flight, res, {key: {userId: req.headers["_id"], date }});
 });
-
 
 // const createDemoDate = {
 //     "flightNo": "DR6573",
@@ -47,6 +59,46 @@ router.post('/update', (req, res, next) => {
 
 router.post('/delete', (req, res, next) => {
     Remove(Flight, res, {_id: req._id});
+});
+
+router.post('/upload', upload.single('flight'), (req, res, err) => {
+    if (req.file) {
+        const fileType = req.file.originalname.split('.').pop().toLowerCase();
+        if(fileType === "xlsx" || fileType === "xls") {
+            const sheetData = XLSX.readFile(req.file.path).Sheets["航班列表"];
+            if ("X" !== sheetData['!ref'].split(":")[1].match(/[A-Z]+/)[0]) {
+                note(res, false, "请按照上传模版，除了添加数据外，不要修改表格格式");
+            } else {
+                const tableLength = sheetData['!ref'].split(":")[1].match(/\d+/)[0];
+                let flights = [];
+                for (let index = 2; index < tableLength; index++) {
+                    flights.push({
+                        flightNo: sheetData['C' + index].w,
+                        airlines: sheetData['D' + index].w,
+                        status: sheetData['E' + index].w,
+                        tail: sheetData['G' + index].w,
+                        position: sheetData['H' + index].w,
+                        models: sheetData['I' + index].w,
+                        plannedDeparture: sheetData['K' + index].w,
+                        estimatedDeparture: sheetData['L' + index].w,
+                        actualDeparture: sheetData['M' + index].w,
+                        plannedArrived: sheetData['N' + index].w,
+                        estimatedArrived: sheetData['O' + index].w,
+                        actualArrived: sheetData['P' + index].w,
+                        date: sheetData['X' + index].w,
+                        userId: req.headers["_id"]
+                    });
+                }
+                Create(Flight, res, flights);
+                // note(res, true, flights);
+            }
+        } else {
+            note(res, false,  "请不要上传非EXCEL文件");
+        }
+
+    } else {
+        note(res, false, "未接收到文件，请重试");
+    }
 });
 
 router.get('/peopleDemoDate', (req, res, next) => {

@@ -8,6 +8,8 @@ const user = require('./router/user');
 const flight = require('./router/flight');
 const people = require('./router/people');
 const task = require('./router/task');
+const unavailable = require('./router/unavailable');
+const transfer = require('./router/transfer');
 
 // middleware
 const verifyToken = require('./middleware/verifyToken');
@@ -45,7 +47,8 @@ app.use("/user", verifyToken, user);
 app.use("/flight", verifyToken, flight);
 app.use("/people", verifyToken, people);
 app.use("/task", verifyToken, task);
-
+app.use("/unavailable", verifyToken, unavailable);
+app.use("/transfer", verifyToken, transfer);
 
 // error handing middleware
 app.use((err, req, res, next) => {

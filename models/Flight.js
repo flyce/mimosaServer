@@ -24,13 +24,9 @@ const FlightSchema = new Schema({
         type: String,
         require: [true, 'tail field is required']
     },
-    start: {
+    airlines: {
         type: String,
-        require: [true, 'start field is required']
-    }, 
-    end: {
-        type: String,
-        require: [true, 'end field is required']
+        require: [true, 'airlines field is required']
     },
     plannedDeparture: {
         type: String,
