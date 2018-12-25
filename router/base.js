@@ -48,7 +48,8 @@ router.post('/login', function (req, res, next) {
                                 success: true,
                                 _id,
                                 name,
-                                token
+                                token,
+                                username
                             });  
                         } else {
                             res.send({

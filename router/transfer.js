@@ -14,7 +14,7 @@ const note = require('../utils/feedback');
 const Transfer = require('../models/Transfer');
 
 router.get('/', (req, res, next) => {
-    Find(Transfer, res, { key: {confirm: false}});
+    Find(Transfer, res, { key: {timestamp: {$gt: Math.floor(Date.now() / 1000 - 11 * 3600)}}});
 });
 
 router.post('/', (req, res, next) => {
@@ -24,15 +24,16 @@ router.post('/', (req, res, next) => {
 });
 
 router.post('/update', (req, res, next) => {
+    console.log(req.body);
     const { _id } = req.body;
-    delete req.body._id;
     Update(Transfer, res, {
         key: {_id},
         content:
             {
                 receiver: req.headers["_id"],
                 confirm: req.body.confirm,
-                receiverWorkshop: req.headers["workshop"]
+                receiverWorkshop: req.headers["workshop"],
+                receiverName: req.body.receiverName
             }
     });
 });

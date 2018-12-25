@@ -8,7 +8,6 @@ const user = require('./router/user');
 const flight = require('./router/flight');
 const people = require('./router/people');
 const task = require('./router/task');
-const unavailable = require('./router/unavailable');
 const transfer = require('./router/transfer');
 
 // middleware
@@ -17,6 +16,13 @@ const Note = require('./utils/feedback');
 
 // set up express app
 const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
+const reqUpdate = (req, res, next) => {
+    io.sockets.emit('timestamp', Math.floor(Date.now() / 1000));
+    next();
+};
 
 // print log
 app.use(logger(':remote-addr :method :url :status :response-time ms - :res[content-length]'));
@@ -44,10 +50,9 @@ app.get('/', (req, res, next) => {
 
 app.use("/cli", base);
 app.use("/user", verifyToken, user);
-app.use("/flight", verifyToken, flight);
+app.use("/flight", verifyToken, reqUpdate, flight);
 app.use("/people", verifyToken, people);
-app.use("/task", verifyToken, task);
-app.use("/unavailable", verifyToken, unavailable);
+app.use("/task", verifyToken, reqUpdate, task);
 app.use("/transfer", verifyToken, transfer);
 
 // error handing middleware
@@ -57,6 +62,6 @@ app.use((err, req, res, next) => {
 });
 
 // listen for request
-app.listen(process.env.port || 4000, function () {
+server.listen(process.env.port || 4000, function () {
     console.log('now listening port 4000 for requests');
 });

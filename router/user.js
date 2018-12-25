@@ -17,11 +17,11 @@ const Note = require('../utils/feedback');
  * 更新用户密码
  * 要求 _id token 需要更新的 key: value => name: "Wang"
  */
-router.post('/update/password', (req, res, next) => {
+router.post('/update', (req, res, next) => {
     if(req.body.password) {
         bcrypt.hash(req.body.password, config.saltRounds).then(
             (hashPassword) => {
-                Update(User, {key: {_id: req.headers["_id"]}, content: {password: hashPassword}})
+                Update(User, res,{key: {_id: req.headers["_id"]}, content: {password: hashPassword}})
                 .then((result, err) => {
                     if(!err) {
                         Note(res, true, "修改成功");

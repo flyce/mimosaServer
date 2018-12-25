@@ -3,7 +3,7 @@ const config = require('../config');
 /***
  * mongodb
  */
-mongoose.connect(config.mongodbUri);
+mongoose.connect(config.mongodbUri,  {useNewUrlParser:true});
 
 const db = mongoose.connection;
 

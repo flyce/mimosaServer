@@ -33,6 +33,10 @@ const TransferSchema = new Schema({
     receiverWorkshop: {
         type: Number
     },
+    timestamp: {
+        type: Number,
+        default: Math.floor(Date.now() / 1000)
+    },
     created: {
         type: Date,
         default: Date.now

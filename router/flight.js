@@ -58,7 +58,7 @@ router.post('/update', (req, res, next) => {
 });
 
 router.post('/delete', (req, res, next) => {
-    Remove(Flight, res, {_id: req._id});
+    Remove(Flight, res, {_id: req.body._id});
 });
 
 router.post('/upload', upload.single('flight'), (req, res, err) => {

@@ -69,10 +69,13 @@ const FlightSchema = new Schema({
         default: '默认'
     },
     position: {
-        type: String,
+        type: String
     },
     people: {
         type: Array
+    },
+    note: {
+      type: String
     },
     created: {
         type: Date,
