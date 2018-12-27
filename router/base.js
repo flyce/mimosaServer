@@ -8,6 +8,9 @@ const redisClient = require('../database/redis');
 const router = express.Router();
 
 const User = require('../models/User');
+const Flight = require('../models/Flight');
+
+const Find = require('../utils/curd').Find;
 
 router.post('/login', function (req, res, next) {
     // 用户名和密码不能为空
@@ -74,8 +77,7 @@ router.post('/login', function (req, res, next) {
  * 不管提交多少数据，只保存 models/User Scheme 里包含 required 规则的字段
  * 需要加入邮箱判断用户是否存在，邮箱不可重复
  */
-router.post('/register', function (req, res, next) {
-    console.log(req.body);
+router.post('/register', (req, res, next) => {
     User.findOne({username: req.body.username}).then(
         (doc, err) => {
             if(!err) {
@@ -85,7 +87,6 @@ router.post('/register', function (req, res, next) {
                         info: '用户已存在，请跟换用户名后尝试'
                     });
                 } else {
-                    console.log("!");
                     bcrypt.hash(req.body.password, config.saltRounds).then(
                         (hashPassword) => {
                             req.body.password = hashPassword;
@@ -110,6 +111,11 @@ router.post('/register', function (req, res, next) {
             } 
         }
     )
+});
+
+router.get('/flight', (req, res, next) => {
+    const date = req.query.date || new Date().getFullYear() + '-' + Number(new Date().getMonth() + 1) + '-' + new Date().getDate();
+    Find(Flight, res, {key: {date }});
 });
 
 module.exports = router;
