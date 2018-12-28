@@ -12,12 +12,37 @@ const TransferSchema = new Schema({
         type: String
     },
     confirm: {
-      type: Boolean,
-      default: false
+        type: Boolean,
+        default: false
     },
-    content: {
+    clean: {
+        type: Number,
+        required: [true, 'clean Person field is required'],
+        default: 2
+    },
+    car: {
+        type: Number,
+        required: [true, 'car field is required'],
+        default: 2,
+    },
+    faultRetention: {
         type: String,
-        required: [true, 'Confirm Person field is required']
+        required: [true, 'Fault Retention field is required']
+    },
+    keyMonitoringFaults: {
+        type: String,
+        required: [true, 'Key Monitoring Faults field is required']
+    },
+    aircraftConditions: {
+        type: String,
+        required: [true, 'Aircraft Conditions  field is required']
+    },
+    administrativeRequirements: {
+        type: String,
+        required: [true, 'Administrative Requirements field is required']
+    },
+    note: {
+        type: String
     },
     handoverName: {
         type: String,

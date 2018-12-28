@@ -10,7 +10,8 @@ const FlightSchema = new Schema({
     },
     flightNo: {
         type: String,
-        require: [true, 'flightNo field is required']
+        require: [true, 'flightNo field is required'],
+        default: 'DR0000'
     },
     date: {
         type: String,
@@ -18,7 +19,8 @@ const FlightSchema = new Schema({
     }, 
     models: {
         type: String,
-        require: [true, 'models field is required']
+        require: [true, 'models field is required'],
+        default: '737/C'
     },
     tail: {
         type: String,
@@ -26,22 +28,24 @@ const FlightSchema = new Schema({
     },
     airlines: {
         type: String,
-        require: [true, 'airlines field is required']
+        require: [true, 'airlines field is required'],
+        default: ''
     },
     plannedDeparture: {
         type: String,
-        require: [true, 'Planned Departure Time field is required']
+        require: [true, 'Planned Departure Time field is required'],
+        default: ''
     },
     estimatedDeparture: {
         type: String,
-        require: [true, 'Estimated Departure Time field is required']
     },
     actualDeparture: {
         type: String
     },
     plannedArrived: {
         type: String,
-        require: [true, 'Planned Arrived Time field is required']
+        require: [true, 'Planned Arrived Time field is required'],
+        default: ''
     },
     estimatedArrived: {
         type: String
@@ -51,7 +55,6 @@ const FlightSchema = new Schema({
     },
     status: {
         type: String,
-        require: [true, 'status field is required'],
         default: '计划'
     },
     delayTime: {

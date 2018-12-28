@@ -18,13 +18,22 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    console.log(req.body, req.headers);
+    console.log(req.body);
     // note(res, true, "a")
     Create(Transfer, res, {handover: req.headers["_id"], handoverWorkshop: req.headers["workshop"], ...req.body});
 });
 
 router.post('/update', (req, res, next) => {
     console.log(req.body);
+    const { _id } = req.body;
+    Update(Transfer, res, {
+        key: {_id},
+        content:
+            {...req.body}
+    });
+});
+
+router.post('/confirm', (req, res, next) => {
     const { _id } = req.body;
     Update(Transfer, res, {
         key: {_id},

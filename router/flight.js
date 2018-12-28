@@ -90,7 +90,6 @@ router.post('/upload', upload.single('flight'), (req, res, err) => {
                     });
                 }
                 Create(Flight, res, flights);
-                // note(res, true, flights);
             }
         } else {
             note(res, false,  "请不要上传非EXCEL文件");
