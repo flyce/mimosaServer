@@ -77,6 +77,9 @@ const FlightSchema = new Schema({
     people: {
         type: Array
     },
+    category: {
+        type: String
+    },
     note: {
       type: String
     },

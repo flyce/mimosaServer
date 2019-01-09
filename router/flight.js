@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 
 const XLSX = require('xlsx');
 
@@ -13,6 +14,15 @@ const  storage = multer.diskStorage({
     }
 });
 const upload = multer({ storage: storage });
+
+function getPeopleName(peopleArray) {
+    let names = '';
+    const length = peopleArray.length;
+    peopleArray.map((people, index) => {
+        names = names + people.name + '、';
+    });
+    return names.substr(0, names.lastIndexOf('、'));
+}
 
 // db curd
 const Update = require('../utils/curd').Update;
@@ -98,6 +108,73 @@ router.post('/upload', upload.single('flight'), (req, res, err) => {
     } else {
         note(res, false, "未接收到文件，请重试");
     }
+});
+
+router.get('/export', (req, res, next) => {
+    const date = req.query.date || new Date().getFullYear() + '-' + Number(new Date().getMonth() + 1) + '-' + new Date().getDate();
+    Flight.find({userId: req.headers["_id"], date }).then((flights, err) => {
+        if(!err) {
+            const wb = { SheetNames: ['Sheet1'], Sheets: {}, Props: {} };
+
+            let dataArray = [{}, {
+                key: '序号',
+                flightNo: '航班号',
+                category: '类别',
+                airlines: '航线',
+                tail: '飞机号',
+                position: '停机位',
+                plannedArrived: '进港时间',
+                plannedDeparture: '离港时间',
+                people: '人员安排',
+                note: '备注'
+            }];
+            flights.map((flight, key) => {
+                const { flightNo, category, airlines, tail,
+                    position, plannedArrived, plannedDeparture, note
+                } = flight;
+                dataArray.push({
+                    key: key + 1,
+                    flightNo,
+                    category,
+                    airlines,
+                    tail,
+                    position,
+                    plannedArrived,
+                    plannedDeparture,
+                    people: getPeopleName(flight.people),
+                    note
+                });
+            });
+            const data = XLSX.utils.json_to_sheet(dataArray, {
+                header: ["key","flightNo","category",
+                    "airlines","tail","position","plannedArrived",
+                    "plannedDeparture", "people", "note"],
+                skipHeader:true
+            });
+            data["A1"] = { t: "s", v: "航线车间生产保障预排班表" };
+            data["A1"].s = {
+                font: { sz: 14, bold: true, color: { rgb: "FFFFAA00" } },
+                alignment: {vertical: "center", horizontal: "center"}
+            };
+            data["!merges"] = [{//合并第一行数据[B1,C1,D1,E1]
+                s: {//s为开始
+                    c: 0,//开始列
+                    r: 0//开始取值范围
+                },
+                e: {//e结束
+                    c: 9,//结束列
+                    r: 0//结束范围
+                }
+            }];
+            wb.Sheets['Sheet1'] = data;
+            // array2XlsxFile(aoa, 'demo');
+            const filePath = path.join(__dirname, '../outputs/', 'a' + '.xlsx');
+            XLSX.writeFileSync(wb, filePath);
+
+            res.send(data);
+            // res.download(array2XlsxFile(aoa, 'radio_' + req.headers["username"] + '_' + Date.now()));
+        }
+    })
 });
 
 router.get('/peopleDemoDate', (req, res, next) => {
