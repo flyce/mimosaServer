@@ -34,7 +34,7 @@ const FlightSchema = new Schema({
     plannedDeparture: {
         type: String,
         require: [true, 'Planned Departure Time field is required'],
-        default: ''
+        default: '0000(0)'
     },
     estimatedDeparture: {
         type: String,
@@ -45,7 +45,7 @@ const FlightSchema = new Schema({
     plannedArrived: {
         type: String,
         require: [true, 'Planned Arrived Time field is required'],
-        default: ''
+        default: '0000(0)'
     },
     estimatedArrived: {
         type: String

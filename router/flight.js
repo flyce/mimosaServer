@@ -36,6 +36,8 @@ const note = require('../utils/feedback');
 // Model
 const Flight = require('../models/Flight');
 
+const isEmpty = content => content ? content.v : null;
+
 router.get('/', (req, res, next) => {
     const date = req.query.date || new Date().getFullYear() + '-' + Number(new Date().getMonth() + 1) + '-' + new Date().getDate();
     Find(Flight, res, {key: {userId: req.headers["_id"], date }});
@@ -74,30 +76,34 @@ router.post('/delete', (req, res, next) => {
 router.post('/upload', upload.single('flight'), (req, res, err) => {
     if (req.file) {
         const fileType = req.file.originalname.split('.').pop().toLowerCase();
-        if(fileType === "xlsx" || fileType === "xls") {
-            const sheetData = XLSX.readFile(req.file.path).Sheets["航班列表"];
-            if ("X" !== sheetData['!ref'].split(":")[1].match(/[A-Z]+/)[0]) {
+        if(fileType === 'csv') {
+            const sheetData = XLSX.readFile(req.file.path).Sheets.Sheet1;
+            if ("AF" !== sheetData['!ref'].split(":")[1].match(/[A-Z]+/)[0]) {
                 note(res, false, "请按照上传模版，除了添加数据外，不要修改表格格式");
             } else {
                 const tableLength = sheetData['!ref'].split(":")[1].match(/\d+/)[0];
                 let flights = [];
                 for (let index = 2; index < tableLength; index++) {
-                    flights.push({
-                        flightNo: sheetData['C' + index].w,
-                        airlines: sheetData['D' + index].w,
-                        status: sheetData['E' + index].w,
-                        tail: sheetData['G' + index].w,
-                        position: sheetData['H' + index].w,
-                        models: sheetData['I' + index].w,
-                        plannedDeparture: sheetData['K' + index].w,
-                        estimatedDeparture: sheetData['L' + index].w,
-                        actualDeparture: sheetData['M' + index].w,
-                        plannedArrived: sheetData['N' + index].w,
-                        estimatedArrived: sheetData['O' + index].w,
-                        actualArrived: sheetData['P' + index].w,
-                        date: sheetData['X' + index].w,
-                        userId: req.headers["_id"]
-                    });
+                    if(sheetData['B' + index]) {
+                        if(sheetData['B' + index].v.match(/DR/) || sheetData['B' + index].v.match(/QD/)) {
+                            flights.push({
+                                flightNo: sheetData['B' + index].v,
+                                airlines: sheetData['D' + index].v,
+                                status: isEmpty(sheetData['E' + index]),
+                                tail: sheetData['G' + index].v,
+                                position: isEmpty(sheetData['H' + index]),
+                                models: sheetData['I' + index].v,
+                                plannedArrived: sheetData['N' + index].v,
+                                estimatedArrived: isEmpty(sheetData['O' + index]),
+                                actualArrived: isEmpty(sheetData['P' + index]),
+                                plannedDeparture: isEmpty(sheetData['AA' + index]),
+                                estimatedDeparture: isEmpty(sheetData['AB' + index]),
+                                actualDeparture: isEmpty(sheetData['AC' + index]),
+                                date: new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate(),
+                                userId: req.headers["_id"]
+                            });
+                        }
+                    }
                 }
                 Create(Flight, res, flights);
             }
@@ -167,12 +173,10 @@ router.get('/export', (req, res, next) => {
                 }
             }];
             wb.Sheets['Sheet1'] = data;
-            // array2XlsxFile(aoa, 'demo');
-            const filePath = path.join(__dirname, '../outputs/', 'a' + '.xlsx');
+            const filePath = path.join(__dirname, '../outputs/', 'flightInfo' + '.xlsx');
             XLSX.writeFileSync(wb, filePath);
 
-            res.send(data);
-            // res.download(array2XlsxFile(aoa, 'radio_' + req.headers["username"] + '_' + Date.now()));
+            res.download(filePath);
         }
     })
 });
