@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const iconv = require('iconv-lite');
 
 const XLSX = require('xlsx');
 
@@ -88,8 +89,8 @@ router.post('/upload', upload.single('flight'), (req, res, err) => {
                         if(sheetData['B' + index].v.match(/DR/) || sheetData['B' + index].v.match(/QD/)) {
                             flights.push({
                                 flightNo: sheetData['B' + index].v,
-                                airlines: sheetData['D' + index].v,
-                                status: isEmpty(sheetData['E' + index]),
+                                airlines: iconv.decode(sheetData['D' + index].v, 'gbk'),
+                                status: sheetData['E' + index] ?  iconv.decode(sheetData['E' + index].v, 'gbk') : null,
                                 tail: sheetData['G' + index].v,
                                 position: isEmpty(sheetData['H' + index]),
                                 models: sheetData['I' + index].v,
@@ -105,7 +106,8 @@ router.post('/upload', upload.single('flight'), (req, res, err) => {
                         }
                     }
                 }
-                Create(Flight, res, flights);
+                res.send({success: true});
+                // Create(Flight, res, flights);
             }
         } else {
             note(res, false,  "请不要上传非EXCEL文件");

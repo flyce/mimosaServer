@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2107a9b-4398-4aed-a2e6-bedf97a10400" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/flight.js" beforeDir="false" afterPath="$PROJECT_DIR$/router/flight.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -15,34 +15,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/router/flight.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-308">
-              <caret line="101" column="128" selection-start-line="101" selection-start-column="128" selection-end-line="101" selection-end-column="128" />
+            <state relative-caret-position="86">
+              <caret line="88" column="106" selection-start-line="88" selection-start-column="106" selection-end-line="88" selection-end-column="106" />
               <folding>
                 <element signature="e#202#449#0" />
                 <element signature="e#1350#1377#0" />
                 <element signature="e#6732#9213#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/router/base.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="116" column="131" selection-start-line="116" selection-start-column="131" selection-end-line="116" selection-end-column="131" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/curd.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-28">
-              <caret line="42" column="24" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -72,9 +54,9 @@
         <option value="$PROJECT_DIR$/models/Transfer.js" />
         <option value="$PROJECT_DIR$/router/transfer.js" />
         <option value="$PROJECT_DIR$/models/Flight.js" />
-        <option value="$PROJECT_DIR$/router/flight.js" />
         <option value="$PROJECT_DIR$/utils/curd.js" />
         <option value="$PROJECT_DIR$/router/base.js" />
+        <option value="$PROJECT_DIR$/router/flight.js" />
       </list>
     </option>
   </component>
@@ -121,6 +103,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -133,16 +116,10 @@
               <item name="mimosaServer" type="462c0819:PsiDirectoryNode" />
               <item name="router" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="mimosaServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mimosaServer" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -201,11 +178,12 @@
       <workItem from="1547023429191" duration="707000" />
       <workItem from="1547196932015" duration="6138000" />
       <workItem from="1547260819693" duration="1293000" />
+      <workItem from="1547265453107" duration="759000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93833000" />
+    <option name="totallyTimeSpent" value="94592000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="619" y="131" width="1045" height="607" extended-state="0" />
@@ -352,29 +330,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/router/flight.js">
+    <entry file="file://$PROJECT_DIR$/router/base.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-308">
-          <caret line="101" column="128" selection-start-line="101" selection-start-column="128" selection-end-line="101" selection-end-column="128" />
-          <folding>
-            <element signature="e#202#449#0" />
-            <element signature="e#1350#1377#0" />
-            <element signature="e#6732#9213#0" />
-          </folding>
+        <state relative-caret-position="201">
+          <caret line="116" column="131" selection-start-line="116" selection-start-column="131" selection-end-line="116" selection-end-column="131" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/curd.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-28">
+        <state relative-caret-position="19">
           <caret line="42" column="24" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/router/base.js">
+    <entry file="file://$PROJECT_DIR$/router/flight.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="116" column="131" selection-start-line="116" selection-start-column="131" selection-end-line="116" selection-end-column="131" />
+        <state relative-caret-position="86">
+          <caret line="88" column="106" selection-start-line="88" selection-start-column="106" selection-end-line="88" selection-end-column="106" />
+          <folding>
+            <element signature="e#202#449#0" />
+            <element signature="e#1350#1377#0" />
+            <element signature="e#6732#9213#0" />
+          </folding>
         </state>
       </provider>
     </entry>
