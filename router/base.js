@@ -115,7 +115,10 @@ router.post('/register', (req, res, next) => {
 
 router.get('/flight', (req, res, next) => {
     const date = req.query.date || new Date().getFullYear() + '-' + Number(new Date().getMonth() + 1) + '-' + new Date().getDate();
-    Find(Flight, res, {key: {date }});
+    Find(Flight, res, {
+        key: {date},
+        limit: req.query.limit || 10
+    });
 });
 
 module.exports = router;

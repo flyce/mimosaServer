@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2107a9b-4398-4aed-a2e6-bedf97a10400" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/router/base.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/router/flight.js" beforeDir="false" afterPath="$PROJECT_DIR$/router/flight.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -15,16 +17,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/router/flight.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/Flight.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="107" column="17" selection-start-line="107" selection-start-column="17" selection-end-line="107" selection-end-column="17" />
-              <folding>
-                <element signature="e#202#449#0" />
-                <element signature="e#1350#1377#0" />
-                <element signature="e#6732#9213#0" />
-              </folding>
+            <state relative-caret-position="306">
+              <caret line="41" column="19" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/router/base.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="348">
+              <caret line="119" column="36" selection-start-line="119" selection-start-column="36" selection-end-line="119" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -55,8 +61,8 @@
         <option value="$PROJECT_DIR$/router/transfer.js" />
         <option value="$PROJECT_DIR$/models/Flight.js" />
         <option value="$PROJECT_DIR$/utils/curd.js" />
-        <option value="$PROJECT_DIR$/router/base.js" />
         <option value="$PROJECT_DIR$/router/flight.js" />
+        <option value="$PROJECT_DIR$/router/base.js" />
       </list>
     </option>
   </component>
@@ -67,8 +73,8 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="619" />
-    <option name="y" value="131" />
+    <option name="x" value="212" />
+    <option name="y" value="114" />
     <option name="width" value="1045" />
     <option name="height" value="607" />
   </component>
@@ -110,6 +116,11 @@
             <path>
               <item name="mimosaServer" type="b2602c69:ProjectViewProjectNode" />
               <item name="mimosaServer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mimosaServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mimosaServer" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mimosaServer" type="b2602c69:ProjectViewProjectNode" />
@@ -179,17 +190,18 @@
       <workItem from="1547196932015" duration="6138000" />
       <workItem from="1547260819693" duration="1293000" />
       <workItem from="1547265453107" duration="812000" />
+      <workItem from="1547368766018" duration="1989000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94645000" />
+    <option name="totallyTimeSpent" value="96634000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="619" y="131" width="1045" height="607" extended-state="0" />
+    <frame x="212" y="114" width="1045" height="607" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26613703" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.265625" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -301,11 +313,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/router/transfer.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -318,41 +326,34 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/Flight.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="80" column="20" lean-forward="true" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/router/base.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="116" column="131" selection-start-line="116" selection-start-column="131" selection-end-line="116" selection-end-column="131" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/curd.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="42" column="24" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/router/flight.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="107" column="17" selection-start-line="107" selection-start-column="17" selection-end-line="107" selection-end-column="17" />
-          <folding>
-            <element signature="e#202#449#0" />
-            <element signature="e#1350#1377#0" />
-            <element signature="e#6732#9213#0" />
-          </folding>
+        <state relative-caret-position="194">
+          <caret line="83" column="46" lean-forward="true" selection-start-line="83" selection-start-column="46" selection-end-line="83" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/curd.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="42" column="24" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Flight.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="41" column="19" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/router/base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="119" column="36" selection-start-line="119" selection-start-column="36" selection-end-line="119" selection-end-column="36" />
         </state>
       </provider>
     </entry>

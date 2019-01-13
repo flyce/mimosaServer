@@ -41,22 +41,12 @@ const isEmpty = content => content ? content.v : null;
 
 router.get('/', (req, res, next) => {
     const date = req.query.date || new Date().getFullYear() + '-' + Number(new Date().getMonth() + 1) + '-' + new Date().getDate();
-    Find(Flight, res, {key: {userId: req.headers["_id"], date }});
+    Find(Flight, res, {
+        key: {userId: req.headers["_id"], date },
+        limit: req.query.limit || 10
+    });
 });
 
-// const createDemoDate = {
-//     "flightNo": "DR6573",
-//     "date": "2018-12-11",
-//     "models": "B737",
-//     "tail": "B6109",
-//     "start": "沈阳",
-//     "end": "兰州",
-//     "plannedDeparture": "07:20",
-//     "plannedArrived": "10:25",
-//     "estimatedArrived": "10:34",
-//     "status": "起飞",
-//     "delayTime": "3"
-// };
 router.post('/', (req, res, next) => {
     Create(Flight, res, {
         userId: req.headers["_id"],
